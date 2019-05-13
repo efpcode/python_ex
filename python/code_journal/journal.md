@@ -1,6 +1,6 @@
 
-#Start#
-##2019-05-13##
+# Start
+### 2019-05-13
 
 Today's goals:
 * Thinker with github account e.g. adding .gitignore additional Dev branch.
@@ -14,4 +14,5 @@ What I've learned about:
 ## Rate of Today! ##
 5 out of 10. 
 Need to improve understanding about argparse and pathlib module. 
----
+
+ -- End of the day --
