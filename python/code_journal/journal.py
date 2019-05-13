@@ -1,24 +1,55 @@
 #!/usr/bin/env python
-
+import argparse
 from datetime import datetime
-class Journal(object):
-    """The Journal formats the daily journal entries."""
-    def __init__(self, header=str(), file_source=str()):
-        super(Journal, self).__init__()
-        self.header = header
-        self.file_source = file_source
+from pathlib import Path
 
-    def make_markdown(self):
-        with open(f"{self.file_source}.md", "a") as f,
-        open(f"{self.file_source}", "r" as r):
-            f.write(self._create_date())
-            f.write(f"#{self.header}\n")
+
+class Journal(object):
+    """The Journal object formats the daily journal entries."""
+
+    def make_markdown(self, header=str(), source_file=str()):
+        log_file = Path(source_file)
+        log_file = self._is_file(log_file)
+
+        with open(f"{log_file.stem}.md", "a") as f, open(
+            f"{log_file.absolute()}", "r"
+        ) as r:
+
+            f.write(f"\n#{header}#\n##{self._create_date()}##\n\n")
             for line in r.readlines():
                 f.write(line)
-
+            f.write("---")
 
     def _create_date(self):
-        return datatime.now().strftime("%Y-%m-%d")
+        """Returns users local-date .i.e. users computer date.
+        """
+        return datetime.now().strftime("%Y-%m-%d")
 
+    def _is_file(self, filepath):
+        try:
+            if not filepath.exists():
+                raise FileNotFoundError
 
+        except FileNotFoundError as error:
+            text = f"File is not found in system.\n{filepath} --> {error}"
+            raise FileNotFoundError(text)
+        else:
+            return filepath
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "header",
+        help="The header of the journal entry.",
+        type=str)
+
+    parser.add_argument(
+        "filename",
+        help="The relative path to source/text material.",
+        type=str)
+
+    parser_args = parser.parse_args()
+
+    my_file = Journal()
+    my_file.make_markdown(header=parser_args.header, source_file=parser_args.filename)
 
