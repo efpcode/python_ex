@@ -15,10 +15,10 @@ class Journal(object):
             f"{log_file.absolute()}", "r"
         ) as r:
 
-            f.write(f"\n#{header}#\n##{self._create_date()}##\n\n")
+            f.write(f"\n# {header}\n### {self._create_date()}\n\n")
             for line in r.readlines():
                 f.write(line)
-            f.write("---")
+            f.write("\n -- End of the day --")
 
     def _create_date(self):
         """Returns users local-date .i.e. users computer date.
