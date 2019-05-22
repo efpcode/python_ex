@@ -37,3 +37,23 @@ programming the less confident I become over what I know or grasp.
 
 
  -- End of the day --
+
+# Javascript is not as nice as Python.
+### 2019-05-22
+
+Today's goals:
+* Creating a new repository for javascript 'content'. 
+* Pratice the new knowledge gained over functions and methods in javascript such as:
+  querySelector, for-loop, conditional, forEach etc.
+
+What I've learned about:
+1. Javascript is more contrived compared to Python. 
+2. Javascript syntax is faraway to become second nature. 
+3. More practice is needed. 
+
+## Rate of Today! ##
+5 out of 10.
+So, at the time I feel like were only scratching the surface of what the
+language can do.
+
+ -- End of the day --
