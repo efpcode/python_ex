@@ -11,6 +11,8 @@ What I've learned about:
 2. a module called pathlib exists.
 3. argparse module.
 
+-- Endo of the day -- 
+
 ## Rate of Today! ##
 5 out of 10. 
 Need to improve understanding about argparse and pathlib module. 
