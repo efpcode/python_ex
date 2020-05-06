@@ -59,33 +59,7 @@ So, at the time I feel like were only scratching the surface of what the
 language can do.
 
  -- End of the day --
-
-# test
-### 2020-05-06
-
-Hello,
-Yes I was gone, but not I'm back (I think. :P )
-Today's goals:
-* Add push something to the git account. 
-* Create 'side_projects' folder.
-* Remove all traces of the old webpage. 
-
-What was done. 
-1. So added some new lines to .gitignore file
-2. Started the code journal again. 
-3. Have decided to craft a new more suitable github page make more job friendly.
-4. Added 'side_projects' directory and uploaded the actual 
-5. Add your python file there. 
-
-To Do list:
-* Create architecture/design for side project.
-* Make sure to keeps this up. 
-
-## Rate of of Today! ##
-6 out 10.
-Need to keep this up and see what happens.
--- End of the day --
- -- End of the day --
+ 
 # A new you awaits you! 
 ### 2020-05-06
 
