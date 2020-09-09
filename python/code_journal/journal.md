@@ -11,6 +11,8 @@ What I've learned about:
 2. a module called pathlib exists.
 3. argparse module.
 
+-- Endo of the day -- 
+
 ## Rate of Today! ##
 5 out of 10. 
 Need to improve understanding about argparse and pathlib module. 
@@ -55,5 +57,32 @@ What I've learned about:
 5 out of 10.
 So, at the time I feel like were only scratching the surface of what the
 language can do.
+
+ -- End of the day --
+ 
+# A new you awaits you! 
+### 2020-05-06
+
+Hello there,
+Yes I was gone, but not I'm back (I think. :P )
+Today's goals:
+* Add push something to the git account. 
+* Create 'side_projects' folder.
+* Remove all traces of the old web page. 
+
+What was done. 
+1. So added some new lines to .gitignore file
+2. Started the code journal again. 
+3. Have decided to craft a new more suitable github page make more job friendly.
+4. Added 'side_projects' directory and uploaded the actual 
+5. Add your python file there. 
+
+To Do list:
+* Create architecture/design for side project.
+* Make sure to keeps this up. 
+
+## Rate of of Today! ##
+6 out 10.
+Need to keep this up and see what happens.
 
  -- End of the day --
