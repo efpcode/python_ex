@@ -86,3 +86,23 @@ To Do list:
 Need to keep this up and see what happens.
 
  -- End of the day --
+# Maybe later this would be solved?
+### 2020-09-21
+
+Found some new inspiration.
+Today's goals:
+* Fix minor settings in git repo.
+* Added a new minor project should become a translator at somepoint.
+
+What was done. 
+1. Added a new entry to coding journal.
+2. Uploaded a putative verison of a project. 
+
+To Do list:
+* Finish translator project..
+
+## Rate of of Today! ##
+5 out 10.
+Todays promise is tomorrows problem.
+
+ -- End of the day --
