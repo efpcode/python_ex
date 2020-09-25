@@ -106,3 +106,23 @@ To Do list:
 Todays promise is tomorrows problem.
 
  -- End of the day --
+
+# 10 minutes is better than 0.
+### 2020-09-25
+
+Today's goals:
+* Quickly add a putative function for tranlates of files. 
+
+What was done. 
+1. Added a new function that does above statement.
+
+To Do list:
+* Create an interactive mode of entrying lines of text.
+* Create CLI for Babelfish.
+
+## Rate of of Today! ##
+7 out 10.
+Establishing a habit is done by hard work or at minimum lazy work.
+
+
+ -- End of the day --
