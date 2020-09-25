@@ -8,15 +8,15 @@ class BabelFiler:
     parentdir = "babel_data"
 
     def __init__(
-            self, src_file: str, target_name: str = None, lang: str = None
-    ):
+            self, src_file: str, output_file: str = None, 
+            trans_lang: str = None):
         self.src_file: str = src_file
-        self.target_name: str = target_name
-        self.lang: str = lang
+        self.output_file: str = output_file
+        self.lang: str = trans_lang
 
     def __str__(self):
         return f"BabelMaker({self.src_file}: 'path_to_input', " \
-               f"{self.target_name}: 'path_to_output_file', " \
+               f"{self.output_file}: 'path_to_output_file', " \
                f"{self.lang}:'selected language to translate file."
 
 # Instance Methods
@@ -33,7 +33,7 @@ class BabelFiler:
             print(f"{str(parent_dir)} was created.")
             return str(parent_dir)
 
-    def make_file(self, suffix: str) -> str:
+    def make_file(self, suffix: str =".txt") -> str:
         try:
             suffix = suffix.replace(".", "")
 
@@ -43,11 +43,11 @@ class BabelFiler:
                   f":{error}")
             suffix = new_suffix
 
-        if not self.target_name:
+        if not self.output_file:
             flag = f"{str(self.src_file)}_translated_to_{str(self.lang)}." \
                    f"{suffix}"
         else:
-            flag = f"{str(self.target_name)}_translated_to" \
+            flag = f"{str(self.output_file)}_translated_to" \
                    f"_{str(self.lang)}.{suffix}"
 
         file_name = self._get_cwd()/self.parentdir/flag
@@ -65,11 +65,11 @@ class BabelFiler:
                 f.write(f"# Creation date:{time_stamp} #\n")
                 f.close()
 
-        self.target_name = str(file_name)
+        self.output_file = str(file_name)
         return str(file_name)
 
     def write_to_file(self, text: str = "# New line #") -> str:
-        write_to_file = Path(self.target_name)
+        write_to_file = Path(self.output_file)
 
         try:
             if not(write_to_file.exists()):
@@ -114,3 +114,4 @@ class BabelFiler:
         open_file = Path(target_name)
         with open_file.open(mode="r") as f:
             return f.readlines()
+
