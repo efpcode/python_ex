@@ -1,4 +1,4 @@
-from .file_parser import BabelFiler
+from .babel_filer import BabelFiler
 from googletrans import Translator
 
 def translate(src_file, output_file, trans_lang):
@@ -6,6 +6,7 @@ def translate(src_file, output_file, trans_lang):
                                trans_lang=trans_lang)
 
     lines = text_material.read_file(src_file)
+    print(lines)
     babel = Translator()
     babel.detect(lines)
 
@@ -14,4 +15,5 @@ def translate(src_file, output_file, trans_lang):
     text_material.write_to_file(babel.translate("".join(lines),
                                              dest=trans_lang).text)
     return "Done"
+
 
