@@ -5,10 +5,10 @@ from typing import List
 
 
 class BabelFiler:
-    parentdir = "babel_data"
+    PARENT_DIR = "babel_data"
 
     def __init__(
-            self, src_file: str, output_file: str = None, 
+            self, src_file: str, output_file: str = None,
             trans_lang: str = None):
         self.src_file: str = src_file
         self.output_file: str = output_file
@@ -22,18 +22,18 @@ class BabelFiler:
 # Instance Methods
 
     def make_dir(self) -> str:
-        parent_dir = self._get_cwd() / str(self.parentdir)
+        parent_dir = self._get_cwd() / str(self.PARENT_DIR)
 
         try:
             parent_dir.mkdir()
-        except FileExistsError as direrror:
-            print(f"Directory already exists: {direrror}")
+        except FileExistsError as dir_error:
+            print(f"Directory already exists: {dir_error}")
             return str(parent_dir)
         else:
             print(f"{str(parent_dir)} was created.")
             return str(parent_dir)
 
-    def make_file(self, suffix: str =".txt") -> str:
+    def make_file(self, suffix: str = ".txt") -> str:
         try:
             suffix = suffix.replace(".", "")
 
@@ -43,23 +43,18 @@ class BabelFiler:
                   f":{error}")
             suffix = new_suffix
 
-        if not self.output_file:
-            flag = f"{str(self.src_file)}_translated_to_{str(self.lang)}." \
-                   f"{suffix}"
-        else:
-            flag = f"{str(self.output_file)}_translated_to" \
-                   f"_{str(self.lang)}.{suffix}"
+        self.output_file = BabelFiler._clean_name(
+            file_name=str(self.output_file))
 
-        file_name = self._get_cwd()/self.parentdir/flag
-        try:
-            if file_name.exists():
-                raise FileExistsError
-        except FileExistsError:
+        file_name = str(self._get_cwd() / self.PARENT_DIR /
+                        f"{self.output_file}.{suffix}")
+
+        if BabelFiler._filepath_existence(file_name):
             print(f"File exists already to a make new entry in file use the "
                   f"write to file method. Path to existent file is "
                   f"{str(file_name)}")
         else:
-            with open(str(file_name), "w") as f:
+            with open(str(file_name), "a+") as f:
                 almost_now = datetime.now()
                 time_stamp = almost_now.strftime("%Y/%m/%d, %H:%M:%S")
                 f.write(f"# Creation date:{time_stamp} #\n")
@@ -69,18 +64,15 @@ class BabelFiler:
         return str(file_name)
 
     def write_to_file(self, text: str = "# New line #") -> str:
-        write_to_file = Path(self.output_file)
 
-        try:
-            if not(write_to_file.exists()):
-                raise FileNotFoundError
-        except FileNotFoundError:
-            return "Run make_file before adding text."
+        if not(BabelFiler._filepath_existence(self.output_file)):
+            print("Run make_file before adding data to file")
+
         else:
+            write_to_file = Path(self.output_file)
             write_to_file.open("a+", encoding="utf-8").write(
                 f"#New Entry#\n{text}\n##End of Entry##\n\n")
-        return f"Text added to\n: {str(write_to_file)}"
-
+            return f"Text added to\n: {str(write_to_file)}"
 
     # Static methods.
     @staticmethod
@@ -110,8 +102,52 @@ class BabelFiler:
         return Path.cwd()
 
     @staticmethod
-    def read_file(target_name):
-        open_file = Path(target_name)
-        with open_file.open(mode="r") as f:
-            return f.readlines()
+    def read_file(src_file: str):
+        if not(BabelFiler._filepath_existence(src_file)):
+            print(f"File does not exist please create file with make_file "
+                  f"method or pick another file. Input file named"
+                  f"{src_file}.\n\n")
+        else:
+            open_file = Path(src_file)
+            with open_file.open(mode="r") as f:
+                return f.readlines()
 
+    @staticmethod
+    def _filepath_existence(path_to_file: str) -> bool:
+        file_test = Path(path_to_file)
+        while True:
+            try:
+                file_test.open("r")
+
+            except (FileNotFoundError, IsADirectoryError) as error:
+                print(f"File named called -> {file_test} was not found! File "
+                      f"name resulted in: {str(error)} or press <Enter> -key "
+                      f"to proceed.")
+                new_file = input("Enter an existent file and path to it "
+                                 "-->: ")
+                file_test = Path(new_file)
+                choice = strtobool(input("Do you want to create a new file?: "
+                                         "[Y/N] "))
+                if choice:
+                    return False
+
+                else:
+                    continue
+
+            else:
+                return file_test.exists()
+
+    @staticmethod
+    def _clean_name(file_name: str) -> str:
+        path_to_file = Path(file_name).name
+        path_to_file = path_to_file[:path_to_file.find(".")]
+        try:
+            path_to_file[0]
+
+        except (ValueError, IndexError) as error:
+            print(f"Changing values from '{file_name}' to 'untitled' to "
+                  f"resolve conflict -> {error}")
+            path_to_file = "untitled"
+            return path_to_file
+        else:
+            return path_to_file
