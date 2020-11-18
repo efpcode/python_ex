@@ -5,7 +5,7 @@ from pprint import pprint
 from distutils.util import strtobool
 
 
-def initial_setup()-> object:
+def initial_setup() -> object:
     name = input("Please enter your name? : ")
     while True:
         try:
@@ -24,6 +24,7 @@ def die_choices(die_collection):
 
     return die_options
 
+
 def toss_simulator():
     dices = initial_setup()
     dice_option = die_choices(dices)
@@ -34,7 +35,8 @@ def toss_simulator():
         try:
             dice_option[player_choice]
         except (KeyError, ValueError) as error:
-            print(f"Please pick a valid option! User input -> {error}")
+            print(f"Please pick a valid option! User input -> {error} was "
+                  f"not found.")
             continue
 
         else:
@@ -48,35 +50,24 @@ def toss_simulator():
                 except ValueError:
                     print("Try again")
                     continue
-                if text == True:
+                if text:
                     print(die.roll())
-                elif text == False:
+                elif not text:
                     break
                 else:
                     continue
 
-            exit = strtobool(input("Do you wish to quit (Y) or Do you want "
+            while_exit = strtobool(input("Do you wish to quit (Y) or Do you "
+                                       "want "
                                    "to change die (N)??: "))
-            if exit == True:
+            if while_exit:
                 break
             continue
+
 
 def main():
     toss_simulator()
 
+
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
