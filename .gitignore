@@ -189,3 +189,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Journal txt
+journal.txt
