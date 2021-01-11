@@ -1,7 +1,6 @@
 from pathlib import Path
 from os import environ
 from distutils.util import strtobool
-from collections import namedtuple
 
 
 # Global Variable
