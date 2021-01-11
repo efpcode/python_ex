@@ -11,7 +11,7 @@ What I've learned about:
 2. a module called pathlib exists.
 3. argparse module.
 
--- Endo of the day -- 
+-- End of the day -- 
 
 ## Rate of Today! ##
 5 out of 10. 
@@ -32,7 +32,7 @@ What I've learned about:
 scientist. 
 3. --- NaN
 
-## Rate of Today! ##
+## Rate of Today!
 4 out of 10.
 Not impressed with my lack of knownledge, but do more I learn about
 programming the less confident I become over what I know or grasp. 
@@ -53,7 +53,7 @@ What I've learned about:
 2. Javascript syntax is faraway to become second nature. 
 3. More practice is needed. 
 
-## Rate of Today! ##
+## Rate of Today! 
 5 out of 10.
 So, at the time I feel like were only scratching the surface of what the
 language can do.
@@ -77,11 +77,11 @@ What was done.
 4. Added 'side_projects' directory and uploaded the actual 
 5. Add your python file there. 
 
-To Do list:
+Todo list:
 * Create architecture/design for side project.
 * Make sure to keeps this up. 
 
-## Rate of of Today! ##
+## Rate of of Today! 
 6 out 10.
 Need to keep this up and see what happens.
 
@@ -98,10 +98,10 @@ What was done.
 1. Added a new entry to coding journal.
 2. Uploaded a putative verison of a project. 
 
-To Do list:
+Todo list:
 * Finish translator project..
 
-## Rate of of Today! ##
+## Rate of of Today! 
 5 out 10.
 Todays promise is tomorrows problem.
 
@@ -116,13 +116,33 @@ Today's goals:
 What was done. 
 1. Added a new function that does above statement.
 
-To Do list:
+Todo list:
 * Create an interactive mode of entrying lines of text.
 * Create CLI for Babelfish.
 
-## Rate of of Today! ##
+## Rate of of Today! 
 7 out 10.
 Establishing a habit is done by hard work or at minimum lazy work.
+
+
+ -- End of the day --
+
+# New Year Hurray!
+### 2021-01-11
+
+Today's goals:
+* Added the re-struction filesystem to the translator project called
+  named babeltranslator.
+
+* Commit it to github
+
+Todo list:
+* Stop adding features.
+* Define MVP for the project babeltranslator.
+* Create CLI for users.
+
+## Rate of Today
+5 out 10.
 
 
  -- End of the day --
