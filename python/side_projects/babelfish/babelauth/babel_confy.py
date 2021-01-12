@@ -6,6 +6,9 @@ from distutils.util import strtobool
 # Global Variable
 
 class BabelConfy:
+    """
+    A class for the intial setup of a Babel project, hence the name BabelConfy
+    """
     BABELHOME = Path.home()
 
     def __init__(self, babel_filename: str = "babel_data"):
