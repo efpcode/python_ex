@@ -1,120 +1,37 @@
 from pathlib import Path
 from os import environ
-from distutils.util import strtobool
+from babelfish.babelio.babelfiler import BabelFiler
 
 
 # Global Variable
 
-class BabelConfy:
-    """
-    A class for the intial setup of a Babel project, hence the name BabelConfy
-    """
-    BABELHOME = Path.home()
-
-    def __init__(self, babel_filename: str = "babel_data"):
-        self.babel_filename = babel_filename
-
-    def __repr__(self):
-        return f"BabelConfy({self._babel_filename})"
-
-    def __str__(self):
-        return f"[BabelConfy(FileName)]"
-
-    @property
-    def babel_filename(self):
-        print(f"Current file name...{self._babel_filename}")
-        return self._babel_filename
-
-    @babel_filename.setter
-    def babel_filename(self, name: str):
-        print(f"Changed name to.. {name}")
-        if not(isinstance(name, str)):
-            raise ValueError("Expected filename to be a string or textinput!")
-        path = (self.BABELHOME / name).absolute()
-        self._babel_filename = path
-
-    def babel_mkdir(self, parents=True, exist_ok=False):
-        dir_name = str(self.babel_filename)
-        if dir_name[dir_name.rfind("/"):].rfind(".") > 1:
-            self.babel_filename = dir_name[:dir_name.find(".")]
-        return self.babel_filename.mkdir(parents=parents, exist_ok=exist_ok)
-
-    def babel_mkfile(self, suffix=".txt", exist_ok=False):
-        fname = str(self.babel_filename)
-        if not (fname.count(".")):
-            self.babel_filename = "".join([fname, suffix])
-        return self.babel_filename.touch(exist_ok=exist_ok)
-
-
-# Static Method
-    @staticmethod
-    def babel_fileopen(path_object=Path()):
-        with path_object.open(mode="r", encoding="utf-8") as f:
-            for line in f.readlines():
-                yield line
+class BabelConfig:
+    HOME = Path.home()
 
     @staticmethod
-    def babel_write_to_file(mode, data, path_object=Path()):
-        with path_object.open(mode=mode, encoding="utf-8") as f:
-            for line in data:
-                f.write(line)
-            f.close()
-
-    @staticmethod
-    def _babel_configurator():
-        sub_dir = BabelConfy("babel_data/.babel_config/")
-        babel_config = BabelConfy("babel_data/.babel_config/babelenv.cfg")
+    def _babel_configurator(sub_dir: str ="", babel_env: str ="") -> object:
+        babel_config = BabelFiler()
+        if not (sub_dir and babel_env):
+            sub_dir = str(BabelFiler.HOME / "babel_data/.babel_config/")
+            babel_env = str(
+                BabelFiler.HOME / "babel_data/.babel_config/babelenv.cfg"
+            )
 
         try:
-            babel_config.babel_mkfile()
+            babel_config.babel_mkfile(babel_env)
 
         except FileExistsError as error:
             text = f"\nConfiguration file already exists at " \
-                   f"{str(babel_config.babel_filename)}.\n{error}"
+                   f"\n{error}"
             return text
+
         except FileNotFoundError:
-            sub_dir.babel_mkdir()
-            babel_config.babel_mkfile()
+            babel_config.babel_mkdir(sub_dir)
+            babel_config.babel_mkfile(babel_env)
             return "Configuration was completed."
 
         else:
             return "Configuration files already exists."
-
-    @staticmethod
-    def _io_errors(func_method, cls_object):
-        msg_to_user = None
-        try:
-            func_method()
-        except FileExistsError as file_error:
-            print(f"The file already exists please rename file name. File "
-                  f"name conflict {file_error}")
-            user_choice = strtobool(input("Do you wish to overwrite file?: "
-                                          "[Y/N]"))
-            if user_choice:
-                print("Overwritten is only valid for files not directories.")
-                return func_method(exist_ok=True)
-
-            else:
-                new_name = input("Rename file to: ")
-                cls_object.babel_filename = new_name
-                return func_method()
-
-        except FileNotFoundError as file_is_not:
-            print(f"The file or directory cannot be found: {file_is_not}")
-
-            msg_to_user = "notfound.txt"
-            cls_object.babel_filename = str(msg_to_user)
-            return func_method()
-
-        except AttributeError as method_miss:
-            print(f"The object pass has no method called:\n{method_miss}")
-
-        except Exception as error:
-            print(f"Something else went wrong: {error}")
-
-        return msg_to_user
-
-
 
 
 class BabelCredentials:
@@ -147,7 +64,8 @@ class BabelCredentials:
     @property
     def keys(self):
 
-        return dict(my_username=self.__babel_user, my_password=self.__babel_skey)
+        return dict(my_username=self.__babel_user,
+                    my_password=self.__babel_skey)
 
     @keys.setter
     def keys(self, data_vals):
@@ -173,9 +91,9 @@ class BabelCredentials:
     def credential_setup(self, override=False):
         if BabelCredentials.HOME.stat().st_size == 0 or override:
             list(BabelCredentials._template())
-            data = BabelConfy.babel_fileopen(self.HOME)
+            data = list(BabelFiler.babel_fileopen(self.HOME))
             keys = self._template_parser(data)
-            BabelConfy.babel_write_to_file(mode="w", data=keys, path_object=self.HOME)
+            BabelFiler.babel_write_to_file(mode="w", data=keys, path_object=self.HOME)
             for k, v in self.keys.items():
                 environ[k.upper()] = v
             return "Credentials are done!"
@@ -187,10 +105,9 @@ class BabelCredentials:
     @classmethod
     def _template(cls):
         if not(cls._io_exists__(cls)):
-            raise ValueError(f"File most exists to create template: "
+            raise ValueError(f"File must exists to create template: "
                              f"{str(cls.HOME)}")
-        value_pairs = {"MY_USERNAME": None, "MY_PASSWORD": None,
-                       "MY_APIKEY": None}
+        value_pairs = {"MY_USERNAME": None, "MY_PASSWORD": None}
         api_file = cls.HOME
 
         if api_file.stat().st_size == 0:
@@ -205,7 +122,7 @@ class BabelCredentials:
     @classmethod
     def user_credentials(cls):
         new_dict = dict()
-        data = list(BabelConfy.babel_fileopen(cls.HOME))
+        data = list(BabelFiler.babel_fileopen(cls.HOME))
         keys = [i.replace("\n", "").lstrip("export").strip()
                 for i in data]
         for items in keys:
