@@ -8,6 +8,6 @@ following:
 
 For more information please visit [babelfish](https://github.com/efpcode/babelfish).
 
-_Thanks for the read!
+_Thanks for the read!_
 
 _efpcode_
