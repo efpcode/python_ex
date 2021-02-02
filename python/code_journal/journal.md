@@ -146,3 +146,24 @@ Todo list:
 
 
  -- End of the day --
+
+# Hello GET API!
+### 2021-02-02
+
+Today's goals:
+* Try to make get methods to api to work for babelfish.babelclient.py
+
+* Commit to github :-)
+
+* Restructure github repo (done the 30 jan 2020 to today)
+
+Todo list BabelFish Project:
+* Fix SQL based db implementation.
+* Make sure that passwords and username are secure.
+* Stop adding new features!
+* make setup.py, main.py
+
+## Rate of Today
+7 out 10.
+
+ -- End of the day --
